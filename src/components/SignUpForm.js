@@ -23,7 +23,7 @@ function SignUpForm() {
         password: password
       };
 
-      const apiUrl = process.env.REACT_APP_API_URL; // 環境変数からAPIのベースURLを取得
+      const apiUrl = process.env.REACT_APP_API_URL; 
       const response = await axios.post(`${apiUrl}/users`, user, { headers });
       if (response.status === 201) {
         setSuccess(true);
