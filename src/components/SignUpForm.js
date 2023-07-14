@@ -1,7 +1,6 @@
-// src/components/SignUpForm.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
+import './SignUpForm.css';
 
 function SignUpForm() {
   const [username, setUsername] = useState('');
@@ -14,18 +13,18 @@ function SignUpForm() {
     e.preventDefault();
     setLoading(true);
     try {
-
       const headers = {
         'Content-Type': 'application/json'
       };
 
       const user = {
-        "username": username,
-        "email": email,
-        "password": password
+        username: username,
+        email: email,
+        password: password
       };
-      
-      const response = await axios.post('http://localhost:8080/users', user, { headers });
+
+      const apiUrl = process.env.REACT_APP_API_URL; // 環境変数からAPIのベースURLを取得
+      const response = await axios.post(`${apiUrl}/users`, user, { headers });
       if (response.status === 201) {
         setSuccess(true);
       }
@@ -36,14 +35,14 @@ function SignUpForm() {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       {isSuccess ? (
-        <div>
+        <div className="success-container">
           <h2>Registration Successful!</h2>
           <p>Please check your email for further instructions.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit}>
           <h2>Sign Up</h2>
           <div>
             <label htmlFor="username">Username:</label>
