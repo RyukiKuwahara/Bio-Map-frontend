@@ -5,19 +5,13 @@ import { Link } from 'react-router-dom';
 
 function Home() {
   return (
-    <div>
-      <div id="header">
-        <tittle>Bio-Map</tittle>
-        <Link to="/login">
-          <div id="example">
-            log in
-          </div>
-        </Link>
-      </div>
+    <div className="home-container">
+      <h2>Welcome to Bio-Map</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante at neque consectetur, at malesuada sem tincidunt. Suspendisse tristique risus ut congue convallis.</p>
+      <Link to="/signup">Sign Up</Link>
+      <br></br>
+      <Link to="/login">Login</Link>
 
-      <div id="map">
-        map だよー
-      </div>
     </div>
   );
 }
