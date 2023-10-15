@@ -1,14 +1,18 @@
 import React from 'react';
 import './Home.css';
-import {Button} from './index.js';
+import { Link } from 'react-router-dom';
 
 
 function Home() {
   return (
     <div>
       <div id="header">
-        <h2>Bio-Map</h2>
-        <Button name={'login'} />
+        <tittle>Bio-Map</tittle>
+        <Link to="/login">
+          <div id="example">
+            log in
+          </div>
+        </Link>
       </div>
 
       <div id="map">

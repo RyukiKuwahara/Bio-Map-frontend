@@ -3,4 +3,17 @@
     line-height: 1.2;
     background-color: rgb(155, 237, 146);
   }
+
+  #header tittle{
+    font-size: 50px;
+  }
+  
+  #example {
+    font-size: 20px;
+    background-color: #c6c5c5;
+    color: #fefdfd;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+  }
   
