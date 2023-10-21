@@ -19,7 +19,7 @@ function Login() {
       };
 
       const userData = {
-        username: username, // Change "email" to "username"
+        username: username,
         password: password
       };
 
@@ -43,10 +43,10 @@ function Login() {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div>
-          <label htmlFor="username">Username:</label> {/* Change "Email" to "Username" */}
+          <label htmlFor="username">Username:</label>
           <input
-            type="text" // Change "email" to "text"
-            id="username" // Change "email" to "username"
+            type="text" 
+            id="username" 
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
