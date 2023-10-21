@@ -24,6 +24,7 @@ function Login() {
       };
 
       const apiUrl = process.env.REACT_APP_API_URL;
+      console.log(apiUrl);
       const response = await axios.post(`${apiUrl}/login`, userData, { headers });
 
       if (response.status === 201) {
