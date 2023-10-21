@@ -66,7 +66,7 @@ function Login() {
           {isLoading ? 'Logging in...' : 'Log In'}
         </button>
         <p>
-        はじめての方は <a onClick={() => navigate('/signup')}>ここをクリック</a>
+        はじめての方は <button onClick={() => navigate('/signup')}>ここをクリック</button>
         </p>
       </form>
     </div>
