@@ -1,5 +1,5 @@
-import React from 'react';
-import { GoogleMap, LoadScript, MarkerF} from '@react-google-maps/api';
+import React, { useState } from 'react';
+import { GoogleMap, LoadScript, MarkerF, InfoWindow} from '@react-google-maps/api';
 const MapContainer = () => {
   
   const mapStyles = {        
@@ -29,6 +29,12 @@ const MapContainer = () => {
     }
   ];
 
+  const [ selected, setSelected ] = useState({});
+  
+  const onSelect = item => {
+    setSelected(item);
+  }
+
   const apiKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
   
   return (
@@ -42,10 +48,29 @@ const MapContainer = () => {
           {
               locations.map(item => {
                 return (
-                <MarkerF key={item.name} position={item.location}/>
+                <MarkerF key={item.name}
+                position={item.location}
+                onClick={() => onSelect(item)}
+                />
                 )
               })
           }
+          {
+            selected.location && 
+            (
+              <InfoWindow
+              position={selected.location}
+              clickable={true}
+              onCloseClick={() => setSelected({})}
+            >
+              <div>
+                <p>{selected.name}</p>
+                <p>{"hello"}</p>
+                <img src="logo512.png" alt="logo"></img>
+              </div>
+            </InfoWindow>
+            )
+         }
          </GoogleMap>
      </LoadScript>
   )
