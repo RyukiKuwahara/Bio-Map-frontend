@@ -3,9 +3,8 @@ import axios from 'axios';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Change "email" to "username"
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,19 +19,17 @@ function Login() {
       };
 
       const userData = {
-        email: email,
+        username: username, // Change "email" to "username"
         password: password
       };
 
       const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.post(`${apiUrl}/login`, userData, { headers });
 
-      
       if (response.status === 201) {
         console.log('Logging in...', userData);
-        navigate('/main-server')
+        navigate('/main-server');
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -45,12 +42,12 @@ function Login() {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="username">Username:</label> {/* Change "Email" to "Username" */}
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text" // Change "email" to "text"
+            id="username" // Change "email" to "username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
@@ -66,7 +63,7 @@ function Login() {
           {isLoading ? 'Logging in...' : 'Log In'}
         </button>
         <p>
-        はじめての方は <button onClick={() => navigate('/signup')}>ここをクリック</button>
+          はじめての方は <button onClick={() => navigate('/signup')}>ここをクリック</button>
         </p>
       </form>
     </div>
