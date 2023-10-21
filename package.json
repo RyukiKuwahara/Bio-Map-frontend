@@ -1,5 +1,4 @@
 {
-  "homepage": "https://RyukiKuwahara.github.io/Bio-Map-frontend",
   "name": "bio-map-frontend",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +8,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
     "babel-preset-react-app": "^10.0.1",
-    "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
@@ -20,8 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
