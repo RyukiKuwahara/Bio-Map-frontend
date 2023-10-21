@@ -2,16 +2,15 @@ import React from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 
-
 function Home() {
   return (
-    <div className="home-container">
-      <h2>Welcome to Bio-Map</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat ante at neque consectetur, at malesuada sem tincidunt. Suspendisse tristique risus ut congue convallis.</p>
-      <Link to="/signup">Sign Up</Link>
-      <br></br>
-      <Link to="/login">Login</Link>
-
+    <div className="header">
+      <div className="title">BIO-MAP</div>
+      <div className="search-form">
+        <input type="text" placeholder="検索フォーム" />
+        <button type="submit">検索</button>
+      </div>
+      <Link to="/login" className="login-button">Login</Link>
     </div>
   );
 }
