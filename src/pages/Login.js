@@ -65,6 +65,9 @@ function Login() {
         <button type="submit" disabled={isLoading}>
           {isLoading ? 'Logging in...' : 'Log In'}
         </button>
+        <p>
+        はじめての方は <a onClick={() => navigate('/signup')}>ここをクリック</a>
+        </p>
       </form>
     </div>
   );
