@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleMap, LoadScript, MarkerF, InfoWindow} from '@react-google-maps/api';
-const MapContainer = () => {
+const MapContainer = (props) => {
   
   const mapStyles = {        
     height: "100vh",
@@ -10,24 +10,29 @@ const MapContainer = () => {
     lat: 35.4123, lng: 139.4132
   }
 
-  const locations = [
-    {
-      name: "Location 1",
-      location: { 
-        lat: 35.4123,
-        lng: 139.4132 
+  var locations;
+  if (props.data === "") {
+    locations = [
+      {
+        name: "カブトムシ",
+        location: { 
+          lat: 35.4123,
+          lng: 139.4132 
+        },
+        explain: "カブトムシ取りに行った際に撮影しました"
+        
       },
-      
-    },
-    {
-      name: "Location 2",
-      location: { 
-        lat: 35.4134,
-        lng: 139.4143 
-      },
-      
-    }
-  ];
+      {
+        name: "クワガタ",
+        location: { 
+          lat: 35.4134,
+          lng: 139.4143 
+        },
+        explain: "カブトムシ取りに行った際に撮影しました"
+      }
+    ];
+  }
+
 
   const [ selected, setSelected ] = useState({});
   
@@ -42,7 +47,7 @@ const MapContainer = () => {
        googleMapsApiKey={apiKey}>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={18}
+          zoom={8}
           center={defaultCenter}
         >
           {
@@ -64,9 +69,9 @@ const MapContainer = () => {
               onCloseClick={() => setSelected({})}
             >
               <div>
-                <p>{selected.name}</p>
-                <p>{"hello"}</p>
-                <img src="logo512.png" alt="logo"></img>
+                <h2>{selected.name}</h2>
+                <img src="sample.jpg" alt="logo"></img>
+                <p>{selected.explain}</p>
               </div>
             </InfoWindow>
             )
