@@ -12,23 +12,7 @@ const MapContainer = (props) => {
 
   var locations;
   if (props.data === "") {
-    locations = [
-      {
-        post_id: 123,
-        name: "カブトムシ",
-        lat: 35.4123,
-        lng: 135.4132,
-        explain: "カブトムシ取りに行った際に撮影しました"
-        
-      },
-      {
-        post_id: 234,
-        name: "クワガタ",
-        lat: 36.4233,
-        lng: 139.4242,
-        explain: "カブトムシ取りに行った際に撮影しました"
-      }
-    ];
+    locations = []
   } else {
     locations = props.data;
   }
@@ -72,10 +56,8 @@ const MapContainer = (props) => {
             >
               <div>
                 <h2>{selected.name}</h2>
-                <img src="sample.jpg" alt="logo"></img>
+                <img src={`data:image/jpg;base64,${selected.image_data}`} alt=""/>
                 <p>{selected.explain}</p>
-                <p>{selected.lat}</p>
-                <p>{selected.lng}</p>
               </div>
             </InfoWindow>
             )
