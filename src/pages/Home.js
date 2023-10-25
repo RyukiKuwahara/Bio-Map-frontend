@@ -6,19 +6,25 @@ import axios from 'axios';
 
 
 function Home() {
-  const [data, setData] = useState('');
+  const [data, setData] = useState("");
 
   const handleSearch = async () => {
     const query = document.querySelector('.search-form input').value;
     const apiUrl = process.env.REACT_APP_API_URL;
+
+    const queryData = {
+      "name": query,
+    };
   
     try {
       const headers = {
         'Content-Type': 'application/json'
       };
-      const response = await axios.post(`${apiUrl}/search/`, query, headers);
-      const resData = await response.json();
-      setData(resData)
+      console.log("call /search")
+      const response = await axios.post(`${apiUrl}/search`, queryData, { headers });
+
+      setData(response.data)
+
       
     } catch (error) {
       console.error('エラー:', error);

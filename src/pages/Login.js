@@ -24,12 +24,12 @@ function Login() {
       };
 
       const apiUrl = process.env.REACT_APP_API_URL;
-      console.log(apiUrl);
+      console.log(`${apiUrl}/login`);
       const response = await axios.post(`${apiUrl}/login`, userData, { headers });
 
       if (response.status === 201) {
         console.log('Logging in...', userData);
-        navigate('/main-server');
+        navigate('/main-service');
       }
     } catch (error) {
       console.error(error);

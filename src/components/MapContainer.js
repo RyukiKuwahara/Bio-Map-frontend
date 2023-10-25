@@ -14,24 +14,26 @@ const MapContainer = (props) => {
   if (props.data === "") {
     locations = [
       {
+        post_id: 123,
         name: "カブトムシ",
-        location: { 
-          lat: 35.4123,
-          lng: 139.4132 
-        },
+        lat: 35.4123,
+        lng: 135.4132,
         explain: "カブトムシ取りに行った際に撮影しました"
         
       },
       {
+        post_id: 234,
         name: "クワガタ",
-        location: { 
-          lat: 35.4134,
-          lng: 139.4143 
-        },
+        lat: 36.4233,
+        lng: 139.4242,
         explain: "カブトムシ取りに行った際に撮影しました"
       }
     ];
+  } else {
+    locations = props.data;
   }
+
+  console.log("location", locations)
 
 
   const [ selected, setSelected ] = useState({});
@@ -53,18 +55,18 @@ const MapContainer = (props) => {
           {
               locations.map(item => {
                 return (
-                <MarkerF key={item.name}
-                position={item.location}
+                <MarkerF key={item.post_id}
+                position={{lat: item.lat, lng: item.lng}}
                 onClick={() => onSelect(item)}
                 />
                 )
               })
           }
           {
-            selected.location && 
+            selected.lat && selected.lng && 
             (
               <InfoWindow
-              position={selected.location}
+              position={{lat: selected.lat, lng: selected.lng}}
               clickable={true}
               onCloseClick={() => setSelected({})}
             >
@@ -72,6 +74,8 @@ const MapContainer = (props) => {
                 <h2>{selected.name}</h2>
                 <img src="sample.jpg" alt="logo"></img>
                 <p>{selected.explain}</p>
+                <p>{selected.lat}</p>
+                <p>{selected.lng}</p>
               </div>
             </InfoWindow>
             )
