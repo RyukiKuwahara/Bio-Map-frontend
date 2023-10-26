@@ -6,8 +6,6 @@ import axios from 'axios';
 
 const MapContainer2 = (props) => {
 
-  console.log(props.sessionId);
-
   const mapStyles = {
     height: "100vh",
     width: "100%",
@@ -44,7 +42,6 @@ const MapContainer2 = (props) => {
   const handleRightClick = (e) => {
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
-    console.log(lat, lng)
     setRightClickPosition({ lat, lng });
     setFormVisible(true);
   };
@@ -77,30 +74,24 @@ const MapContainer2 = (props) => {
   };
 
   const handleFormSubmit = async () => {
-    console.log("Form Data:", formData);
 
     if (selectedImage) {
-      console.log("Selected Image:", selectedImage);
-  
-      // 画像をbase64形式にエンコード
+      
       const reader = new FileReader();
   
       reader.onload = async (event) => {
         const base64Image = event.target.result;
         const {lat, lng} = rightClickPosition;
-        console.log(base64Image)
-  
-        // データオブジェクトを作成
+          
         const postData = {
           SessionId: props.sessionId,
           SpeciesName: formData.name,
-          ImageData: base64Image, // base64形式の画像データを追加
+          ImageData: base64Image, 
           Explain: formData.comment,
           Lat: lat,
           Lng: lng
         };
-  
-        // POSTリクエストを送信
+
         try {
           const headers = {
             'Content-Type': 'application/json'
@@ -114,7 +105,7 @@ const MapContainer2 = (props) => {
         }
       };
 
-      reader.readAsDataURL(selectedImage); // 画像をbase64形式に変換
+      reader.readAsDataURL(selectedImage);
     }
 
     setFormVisible(false);
@@ -175,7 +166,7 @@ const MapContainer2 = (props) => {
                 <div>
                   <label htmlFor="image">Image:</label>
                   <input
-                    type="file" // ファイル選択用に変更
+                    type="file" 
                     id="image"
                     name="image"
                     accept="image/*"
