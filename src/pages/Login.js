@@ -29,6 +29,8 @@ function Login() {
 
       if (response.status === 201) {
         console.log('Logging in...', userData);
+        const sessionId = response.data.session_id;
+        document.cookie = `session_id=${sessionId}; path=/; Secure`;
         navigate('/main-service');
       }
     } catch (error) {
