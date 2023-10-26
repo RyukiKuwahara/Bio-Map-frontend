@@ -11,9 +11,7 @@ function getCookie(name) {
 }
 
 function MainService() {
-  console.log(document.cookie)
   const sessionId = getCookie('session_id')
-  // console.log(sessionId)
   const [data, setData] = useState("");
 
   const handleSearch = async () => {
