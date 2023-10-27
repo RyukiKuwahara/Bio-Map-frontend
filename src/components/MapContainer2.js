@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import './MapContainer2.css';
 import axios from 'axios';
+import PostForm from './PostForm';
 
 
 const MapContainer2 = (props) => {
@@ -52,14 +52,6 @@ const MapContainer2 = (props) => {
       ...prevData,
       [name]: value,
     }));
-  };
-
-  const handleImageDrop = (e) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      setSelectedImage(file);
-    }
   };
 
   const handleImageDragOver = (e) => {
@@ -150,46 +142,13 @@ const MapContainer2 = (props) => {
             clickable={true}
             onCloseClick={() => setFormVisible(false)}
           >
-            <div className="form-container">
-              <h2>Enter Information</h2>
-              <form>
-                <div>
-                  <label htmlFor="name">Name:</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleFormChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="image">Image:</label>
-                  <input
-                    type="file" 
-                    id="image"
-                    name="image"
-                    accept="image/*"
-                    onDragOver={handleImageDragOver}
-                    onDrop={handleImageDrop}
-                    onChange={handleImageChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="comment">Comment:</label>
-                  <input
-                    type="text"
-                    id="comment"
-                    name="comment"
-                    value={formData.comment}
-                    onChange={handleFormChange}
-                  />
-                </div>
-                <button type="button" onClick={handleFormSubmit}>
-                  Submit
-                </button>
-              </form>
-            </div>
+            <PostForm
+              onFormSubmit={handleFormSubmit}
+              onImageChange={handleImageChange}
+              onFormChange={handleFormChange}
+              onImageDrop={handleImageDragOver}
+              formData={formData}
+            />
           </InfoWindow>
         )}
       </GoogleMap>
