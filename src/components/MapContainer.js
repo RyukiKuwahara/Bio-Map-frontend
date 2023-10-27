@@ -11,7 +11,7 @@ const MapContainer = (props) => {
   }
 
   var locations;
-  if (props.data === "") {
+  if (props.data === null) {
     locations = []
   } else {
     locations = props.data;

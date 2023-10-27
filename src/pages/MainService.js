@@ -13,6 +13,9 @@ function getCookie(name) {
 function MainService() {
   const sessionId = getCookie('session_id')
   const [data, setData] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [postsLength, setPostsLength] = useState(null);
+
 
   const handleSearch = async () => {
     const query = document.querySelector('.search-form input').value;
@@ -21,6 +24,8 @@ function MainService() {
     const queryData = {
       "name": query,
     };
+
+    setIsLoading(true);
   
     try {
       const headers = {
@@ -28,12 +33,14 @@ function MainService() {
       };
       console.log("call /search")
       const response = await axios.post(`${apiUrl}/search`, queryData, { headers });
-
+      setPostsLength(response.data.length)
       setData(response.data)
 
       
     } catch (error) {
       console.error('エラー:', error);
+    } finally {
+      setIsLoading(false);
     }
   };  
 
@@ -43,8 +50,9 @@ function MainService() {
         <div className="title">BIO-MAP</div>
         <div className="search-form">
           <input type="text" placeholder="検索フォーム" />
-          <button type="submit" onClick={handleSearch}>検索</button>
+          <button type="submit" onClick={handleSearch}>{isLoading ? "検索中..." : "検索"}</button>
         </div>
+        <div>{postsLength === null ? "" : `検索結果は ${ postsLength } 件です`}</div>
         <Link to="/main-service" className="login-button">マイページ</Link>
       </div>
       <MapContainer2 data={data} sessionId={sessionId}/>

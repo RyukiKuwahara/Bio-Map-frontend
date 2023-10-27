@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import MapContainer from '../components/MapContainer';
 import axios from 'axios';
 
-
 function Home() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [postsLength, setPostsLength] = useState(null);
 
   const handleSearch = async () => {
     const query = document.querySelector('.search-form input').value;
@@ -15,21 +16,23 @@ function Home() {
     const queryData = {
       "name": query,
     };
-  
+
+    setIsLoading(true);
+
     try {
       const headers = {
         'Content-Type': 'application/json'
       };
-      console.log("call /search")
+      console.log("call /search");
       const response = await axios.post(`${apiUrl}/search`, queryData, { headers });
-
-      setData(response.data)
-
-      
+      setPostsLength(response.data.length)
+      setData(response.data);
     } catch (error) {
       console.error('エラー:', error);
+    } finally {
+      setIsLoading(false);
     }
-  };  
+  };
 
   return (
     <>
@@ -37,11 +40,12 @@ function Home() {
         <div className="title">BIO-MAP</div>
         <div className="search-form">
           <input type="text" placeholder="検索フォーム" />
-          <button type="submit" onClick={handleSearch}>検索</button>
+          <button type="submit" onClick={handleSearch}>{isLoading ? "検索中..." : "検索"}</button>
         </div>
+        <div>{postsLength === null ? "" : `検索結果は ${ postsLength } 件です`}</div>
         <Link to="/login" className="login-button">Login</Link>
       </div>
-      <MapContainer data={data}/>
+      <MapContainer data={data} />
     </>
   );
 }
