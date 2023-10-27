@@ -75,7 +75,7 @@ function SignUpForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <p>※英小文字，英大文字，数字をすべて含む長さ９以上の文字列</p>
+            <p>※パスワードは，英小文字，英大文字，数字をすべて含む長さ９以上の文字列に設定してください</p>
           </div>
           <button type="submit" disabled={isLoading}>
             {isLoading ? 'Signing up...' : 'Sign Up'}
