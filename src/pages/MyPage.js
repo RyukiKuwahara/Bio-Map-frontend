@@ -39,9 +39,9 @@ function MyPage() {
     <div>
       <div className="header">
         <div className='title'>BIO-MAP</div>
+        <p>{userData.name}さんのマイページ</p>
         <Link to="/main-service" className="login-button">戻る</Link>
       </div>
-      <h1>Welcome, {userData.name}</h1>
       <ImageGallery posts={userData.posts} />
     </div>
   );
