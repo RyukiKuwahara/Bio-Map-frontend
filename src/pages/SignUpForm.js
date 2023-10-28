@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUpForm.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm() {
   const [username, setUsername] = useState('');
@@ -8,6 +9,8 @@ function SignUpForm() {
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +32,8 @@ function SignUpForm() {
         setSuccess(true);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error.response.data)
+      setErrorMessage(error.response.data)
     }
     setLoading(false);
   };
@@ -39,11 +43,12 @@ function SignUpForm() {
       {isSuccess ? (
         <div className="success-container">
           <h2>Registration Successful!</h2>
-          <p>Please check your email for further instructions.</p>
+          <button type="button" onClick={() => navigate('/login')}>ログイン画面へ進む</button>
         </div>
       ) : (
         <form className="signup-form" onSubmit={handleSubmit}>
           <h2>Sign Up</h2>
+          <p className="error-message">{errorMessage === "" ? "" : `${errorMessage}`}</p>
           <div>
             <label htmlFor="username">Username:</label>
             <input
@@ -70,6 +75,7 @@ function SignUpForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <p>※パスワードは，英小文字，英大文字，数字をすべて含む長さ９以上の文字列に設定してください</p>
           </div>
           <button type="submit" disabled={isLoading}>
             {isLoading ? 'Signing up...' : 'Sign Up'}
