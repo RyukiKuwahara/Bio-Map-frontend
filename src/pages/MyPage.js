@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ImageGallery from '../components/ImageGallery';
+import BadgeGallery from '../components/BadgeGallery';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import './MyPage.css';
 
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -22,7 +24,7 @@ function MyPage() {
         };
         const response = await axios.post(`${apiUrl}/mypage`, { "SessionId" : getCookie("session_id") }, { headers });
         setUserData(response.data);
-        console.log(response.data.posts)
+        console.log(response.data)
       } catch (error) {
         console.error(error);
       }
@@ -42,7 +44,12 @@ function MyPage() {
         <p>{userData.name}さんのマイページ</p>
         <Link to="/main-service" className="login-button">戻る</Link>
       </div>
-      <ImageGallery posts={userData.posts} />
+      <div className='body'>
+        <h3 className="sub-title">バッジギャラリー</h3>
+       <BadgeGallery badges={userData.badges} />
+       <h3 className="sub-title">ポストギャラリー</h3>
+       <ImageGallery posts={userData.posts} />
+      </div>
     </div>
   );
 }

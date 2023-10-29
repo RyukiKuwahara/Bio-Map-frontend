@@ -1,0 +1,10 @@
+.sub-title {
+    margin: 0px;
+    padding: 4px;
+    text-align: center;
+}
+
+.body {
+    background: linear-gradient(90deg, #c4e4cf, #e2f1d9, #eff3de);
+
+}
