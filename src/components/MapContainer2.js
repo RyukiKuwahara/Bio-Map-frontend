@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import axios from 'axios';
 import PostForm from './PostForm';
 
@@ -103,56 +103,52 @@ const MapContainer2 = (props) => {
     setFormVisible(false);
   };
 
-  const apiKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
-
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={8}
-        center={defaultCenter}
-        onRightClick={handleRightClick}
-      >
-        {locations.map((item) => {
-          return (
-            <Marker
-              key={item.post_id}
-              position={{ lat: item.lat, lng: item.lng }}
-              onClick={() => onSelect(item)}
-            />
-          );
-        })}
-        {selected.lat && selected.lng && (
-          <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
-            clickable={true}
-            onCloseClick={() => setSelected({})}
-          >
-            <div>
-              <h2>{selected.name}</h2>
-              <img src={`data:image/jpg;base64,${selected.image_data}`} alt="" />
-              <p>{selected.explain}</p>
-            </div>
-          </InfoWindow>
-        )}
+    <GoogleMap
+      mapContainerStyle={mapStyles}
+      zoom={8}
+      center={defaultCenter}
+      onRightClick={handleRightClick}
+    >
+      {locations.map((item) => {
+        return (
+          <Marker
+            key={item.post_id}
+            position={{ lat: item.lat, lng: item.lng }}
+            onClick={() => onSelect(item)}
+          />
+        );
+      })}
+      {selected.lat && selected.lng && (
+        <InfoWindow
+          position={{ lat: selected.lat, lng: selected.lng }}
+          clickable={true}
+          onCloseClick={() => setSelected({})}
+        >
+          <div>
+            <h2>{selected.name}</h2>
+            <img src={`data:image/jpg;base64,${selected.image_data}`} alt="" />
+            <p>{selected.explain}</p>
+          </div>
+        </InfoWindow>
+      )}
 
-        {rightClickPosition && formVisible && (
-          <InfoWindow
-            position={rightClickPosition}
-            clickable={true}
-            onCloseClick={() => setFormVisible(false)}
-          >
-            <PostForm
-              onFormSubmit={handleFormSubmit}
-              onImageChange={handleImageChange}
-              onFormChange={handleFormChange}
-              onImageDrop={handleImageDragOver}
-              formData={formData}
-            />
-          </InfoWindow>
-        )}
-      </GoogleMap>
-    </LoadScript>
+      {rightClickPosition && formVisible && (
+        <InfoWindow
+          position={rightClickPosition}
+          clickable={true}
+          onCloseClick={() => setFormVisible(false)}
+        >
+          <PostForm
+            onFormSubmit={handleFormSubmit}
+            onImageChange={handleImageChange}
+            onFormChange={handleFormChange}
+            onImageDrop={handleImageDragOver}
+            formData={formData}
+          />
+        </InfoWindow>
+      )}
+    </GoogleMap>
   );
 };
 
