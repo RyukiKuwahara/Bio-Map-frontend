@@ -4,9 +4,10 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [username, setUsername] = useState(''); // Change "email" to "username"
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -35,6 +36,7 @@ function Login() {
       }
     } catch (error) {
       console.error(error);
+      setErrorMessage(error.response.data)
     }
 
     setLoading(false);
@@ -44,6 +46,7 @@ function Login() {
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+        <p className="error-message">{errorMessage === '' ? '' : `${errorMessage}`}</p>
         <div>
           <label htmlFor="username">Username:</label>
           <input
