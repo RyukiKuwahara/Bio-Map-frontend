@@ -7,6 +7,10 @@
   background: linear-gradient(90deg, #c4e4cf, #e2f1d9, #eff3de);
 }
 
+.none-post {
+  text-align: center;
+}
+
 .image-item {
   width: 300px;
   background-color: #fff;
