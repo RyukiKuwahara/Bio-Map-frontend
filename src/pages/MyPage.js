@@ -34,7 +34,15 @@ function MyPage() {
   }, [apiUrl]);
 
   if (userData === null) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="header">
+          <div className='title'>BIO-MAP</div>
+          <Link to="/main-service" className="login-button">戻る</Link>
+        </div>
+        <div>Loading...</div>
+      </>
+    );
   }
 
   return (
