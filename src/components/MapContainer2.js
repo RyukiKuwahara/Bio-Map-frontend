@@ -11,11 +11,6 @@ const MapContainer2 = (props) => {
     width: "100%",
   };
 
-  const defaultCenter = {
-    lat: 35.4123,
-    lng: 139.4132,
-  };
-
   var locations;
 
   if (props.data === "") {
@@ -25,7 +20,7 @@ const MapContainer2 = (props) => {
   }
 
   const [selected, setSelected] = useState({});
-  const [rightClickPosition, setRightClickPosition] = useState(null);
+  const [rightClickPosition, setRightClickPosition] = useState({lat : 35.4123, lng : 139.4132});
   const [formVisible, setFormVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -107,7 +102,7 @@ const MapContainer2 = (props) => {
     <GoogleMap
       mapContainerStyle={mapStyles}
       zoom={8}
-      center={defaultCenter}
+      center={rightClickPosition}
       onRightClick={handleRightClick}
     >
       {locations.map((item) => {
