@@ -5,10 +5,6 @@ const MapContainer = (props) => {
   const mapStyles = {        
     height: "100vh",
     width: "100%"};
-  
-  const defaultCenter = {
-    lat: 35.4123, lng: 139.4132
-  }
 
   var locations;
   if (props.data === null) {
@@ -21,16 +17,18 @@ const MapContainer = (props) => {
 
 
   const [ selected, setSelected ] = useState({});
+  const [ position, setPosition ] = useState({lat: 35.4123 , lng: 139.4132});
   
   const onSelect = item => {
     setSelected(item);
+    setPosition({lat: item.lat, lng: item.lng});
   }
   
   return (
     <GoogleMap
       mapContainerStyle={mapStyles}
       zoom={8}
-      center={defaultCenter}
+      center={position}
     >
       {
           locations.map(item => {
