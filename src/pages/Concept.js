@@ -75,25 +75,31 @@ function Concept() {
             <li>
               <h3>昆虫</h3>
               <ul className="container">
-                {insects.map((insect, index) => (
-                  <li key={index} className="column">{insect}</li>
-                ))}
+                {insects.length === 0 ? (<p>読み込み中...</p>) : (
+                  insects.map((insect, index) => (
+                    <li key={index} className="column">{insect}</li>
+                  ))
+                )}
               </ul>
             </li>
             <li> 
               <h3>魚類</h3>
               <ul className="container">
-                {fishes.map((fish, index) => (
-                  <li key={index} className="column">{fish}</li>
-                ))}
+                {fishes.length === 0 ? (<p>読み込み中...</p>) : (
+                  fishes.map((fish, index) => (
+                    <li key={index} className="column">{fish}</li>
+                  ))
+                )}
               </ul>
             </li>
             <li>
               <h3>植物</h3>
               <ul className="container">
-                {plants.map((plant, index) => (
-                  <li key={index} className="column">{plant}</li>
-                ))}
+                {plants.length === 0 ? (<p>読み込み中...</p>) : (
+                  plants.map((plant, index) => (
+                    <li key={index} className="column">{plant}</li>
+                  ))
+                )}
               </ul>
             </li>
           </ul>
