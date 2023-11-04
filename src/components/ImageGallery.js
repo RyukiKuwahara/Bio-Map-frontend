@@ -4,7 +4,7 @@ import './ImageGallery.css';
 function ImageGallery({ posts }) {
   return (
     <>
-      {posts.length > 0 ? (
+      {posts !== null ? (
         <div className="image-gallery">
           {posts.map((post, index) => (
               <div key={index} className="image-item">
