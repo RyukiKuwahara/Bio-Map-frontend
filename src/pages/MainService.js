@@ -54,6 +54,7 @@ function MainService() {
         </div>
         <div>{postsLength === null ? "" : `検索結果は ${ postsLength } 件です`}</div>
         <Link to="/mypage" className="login-button">マイページ</Link>
+        <Link to="/" className="login-button">Logout</Link>
       </div>
       <MapContainer2 data={data} sessionId={sessionId}/>
     </>
