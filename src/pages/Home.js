@@ -38,6 +38,7 @@ function Home() {
     <>
       <div className="header">
         <div className="title">BIO-MAP</div>
+        <Link to="/concept" className='concept'>BIO-MAPとは？</Link>
         <div className="search-form">
           <input type="text" placeholder="検索フォーム" />
           <button type="submit" onClick={handleSearch}>{isLoading ? "検索中..." : "検索"}</button>
