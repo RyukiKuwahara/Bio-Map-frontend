@@ -12,6 +12,7 @@ function getCookie(name) {
 
 function MainService() {
   const sessionId = getCookie('session_id')
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [postsLength, setPostsLength] = useState(null);
@@ -19,7 +20,6 @@ function MainService() {
 
   const handleSearch = async () => {
     const query = document.querySelector('.search-form input').value;
-    const apiUrl = process.env.REACT_APP_API_URL;
 
     const queryData = {
       "name": query,
@@ -42,7 +42,24 @@ function MainService() {
     } finally {
       setIsLoading(false);
     }
-  };  
+  };
+
+  const handleRemoveSession = async () => {
+    const queryData = {
+      "sessionId": sessionId,
+    };
+
+    try {
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      console.log("call /logout")
+      const response = await axios.post(`${apiUrl}/logout`, queryData, { headers });
+      console.log(response.data)
+    } catch (error) {
+      console.error('エラー:', error);
+    }
+  };
 
   return (
     <>
@@ -55,7 +72,7 @@ function MainService() {
         <div>{postsLength === null ? "" : `検索結果は ${ postsLength } 件です`}</div>
         <div>
           <Link to="/mypage" className="login-button">マイページ</Link>
-          <Link to="/" className="login-button">Logout</Link>
+          <Link to="/" className="login-button" onClick={handleRemoveSession}>Logout</Link>
         </div>
       </div>
       <MapContainer2 data={data} sessionId={sessionId}/>
