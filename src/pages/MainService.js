@@ -53,8 +53,10 @@ function MainService() {
           <button type="submit" onClick={handleSearch}>{isLoading ? "検索中..." : "検索"}</button>
         </div>
         <div>{postsLength === null ? "" : `検索結果は ${ postsLength } 件です`}</div>
-        <Link to="/mypage" className="login-button">マイページ</Link>
-        <Link to="/" className="login-button">Logout</Link>
+        <div>
+          <Link to="/mypage" className="login-button">マイページ</Link>
+          <Link to="/" className="login-button">Logout</Link>
+        </div>
       </div>
       <MapContainer2 data={data} sessionId={sessionId}/>
     </>
