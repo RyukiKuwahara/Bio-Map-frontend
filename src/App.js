@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import MainService from './pages/MainService';
 import MyPage from './pages/MyPage';
 import Concept from './pages/Concept';
+import BadgeCondition from './pages/BadgeCondition'
 import { LoadScript } from '@react-google-maps/api';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
@@ -21,6 +22,7 @@ function App() {
           <Route path="/main-service" element={<MainService />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/concept" element={<Concept />} />
+          <Route path="/badge-condition" element={<BadgeCondition />} />
         </Routes>
       </LoadScript>
     </Router>

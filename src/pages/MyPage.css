@@ -1,7 +1,16 @@
 .sub-title {
     margin: 0px;
     padding: 4px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.sub-title h3 {
+    margin: 10px;
+}
+
+.sub-title p {
+    margin: 10px;
 }
 
 .body {
