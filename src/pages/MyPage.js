@@ -56,11 +56,7 @@ function MyPage() {
         <div className="sub-title">
           <h3>バッジギャラリー</h3>
           <Link
-            to={{
-              pathname: '/badge-condition',
-              state: { badges: userData.badges }
-            }}
-          >
+            to='/badge-condition' state={{badges: userData.badges}}>
             <p>バッジ獲得条件</p>
           </Link>
         </div>
