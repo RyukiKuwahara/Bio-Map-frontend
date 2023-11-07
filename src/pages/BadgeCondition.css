@@ -1,0 +1,21 @@
+.main-container {
+    background-color: antiquewhite;
+    margin: 0px;
+}
+
+
+
+.main-container h2 {
+    margin: 0px;
+    padding: 10px;
+}
+
+.condition-container img {
+    width: 300px;
+    margin-left: 100px;
+}
+
+.condition-container p {
+    font-size: 25px;
+    margin-left: 50px;
+}

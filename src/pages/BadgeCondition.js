@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import './BadgeCondition.css'
 
 function BadgeCondition() {
     const [badge_conditions, setConditions] = useState([]);
@@ -33,22 +34,23 @@ function BadgeCondition() {
               <div className='title'>BIO-MAP</div>
               <Link to="/mypage" className="login-button">戻る</Link>
           </div>
-          <h1>New Page</h1>
-          <h3>バッジ獲得条件</h3>
-          <table>
-            <tbody>
-              {badge_conditions.map((badge_condition, index) => (
-                <tr key={index}>
-                  <td>
-                    <h1>"hoge"</h1>
-                  </td>
-                  <td>
-                    <p>{badge_condition}</p>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className='main-container'>
+            <h2>バッジ獲得条件</h2>
+            <table>
+                <tbody>
+                {badge_conditions.map((badge_condition, index) => (
+                    <tr className="condition-container" key={index}>
+                    <td>
+                        <img src="./question.jpg" alt=""></img>
+                    </td>
+                    <td>
+                        <p>{badge_condition}</p>
+                    </td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+          </div>
         </>
     );
     
