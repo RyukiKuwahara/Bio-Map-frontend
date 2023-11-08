@@ -53,7 +53,13 @@ function MyPage() {
         <Link to="/main-service" className="login-button">戻る</Link>
       </div>
       <div className='body'>
-        <h3 className="sub-title">バッジギャラリー</h3>
+        <div className="sub-title">
+          <h3>バッジギャラリー</h3>
+          <Link
+            to='/badge-condition' state={{badges: userData.badges}}>
+            <p>バッジ獲得条件</p>
+          </Link>
+        </div>
        <BadgeGallery badges={userData.badges} />
        <h3 className="sub-title">ポストギャラリー</h3>
        <ImageGallery posts={userData.posts} />
