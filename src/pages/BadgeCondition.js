@@ -6,8 +6,13 @@ function BadgeCondition() {
     const [badge_conditions, setConditions] = useState([]);
 
     const location = useLocation();
-    console.log(badge_conditions)
     const badges = location.state.badges || [];
+    var dict = {};
+    for (var i = 0; i < badges.length; i++) {
+        var item = badges[i];
+        dict[item.badge_id] = item.image_data;
+    }
+    // console.log(dict[1])
     
     useEffect(() => {
         const filePath = '/badge_condition.csv';
@@ -41,7 +46,7 @@ function BadgeCondition() {
                 {badge_conditions.map((badge_condition, index) => (
                     <tr className="condition-container" key={index}>
                     <td>
-                        <img src="./question.jpg" alt=""></img>
+                        {dict[index+1] === undefined ? (<img src="./question.jpg" alt=""></img>) : (<img src={`data:image/jpg;base64,${dict[index+1]}`} alt=""></img>)}
                     </td>
                     <td>
                         <p>{badge_condition}</p>
