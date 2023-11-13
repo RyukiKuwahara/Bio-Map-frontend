@@ -29,6 +29,8 @@ const MapContainer2 = (props) => {
     comment: "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [badgeImg, setBadgeImg] = useState(null);
 
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -90,6 +92,11 @@ const MapContainer2 = (props) => {
           console.log(`${apiUrl}/post`);
           const response = await axios.post(`${apiUrl}/post`, postData, { headers });
           console.log('POSTリクエストの結果:', response.data);
+          setSuccessMessage("投稿に成功しました．")
+          if (response.data.badge_img !== "") {
+            setBadgeImg(response.data.badge_img)
+          }
+          
         } catch (error) {
           console.error('POSTリクエストエラー:', error);
           setErrorMessage(error.response.data)
@@ -105,7 +112,8 @@ const MapContainer2 = (props) => {
 
   return (
     <>
-      {errorMessage !== null ? <PopMessage message={errorMessage}  onClose={() => setErrorMessage(null)}/> : null}
+      {errorMessage !== null ? <PopMessage message={errorMessage} badgeImg={badgeImg} onClose={() => setErrorMessage(null)}/> : null}
+      {successMessage !== null ? <PopMessage message={successMessage} badgeImg={badgeImg}  onClose={() => setSuccessMessage(null)}/> : null}
       <GoogleMap
         mapContainerStyle={mapStyles}
         zoom={8}
